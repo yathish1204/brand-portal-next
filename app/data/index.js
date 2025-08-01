@@ -1,0 +1,32 @@
+export const tabs = [
+    {
+        title:"All",
+        href:"/all",
+        src:"/assets/images/all.png"
+    },
+    {
+        title:"Icons",
+        href:"/icons",
+        src:"/assets/images/all.png"
+    },
+    {
+        title:"Images",
+        href:"/images",
+        src:"/assets/images/all.png"
+    },
+    {
+        title:"Infographics",
+        href:"/infographics",
+        src:"/assets/images/all.png"
+    },
+    {
+        title:"PPT",
+        href:"/ppt",
+        src:"/assets/images/all.png"
+    },
+    {
+        title:"PDF",
+        href:"/pdf",
+        src:"/assets/images/all.png"
+    },
+]
