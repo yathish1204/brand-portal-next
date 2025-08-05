@@ -1,7 +1,12 @@
+import IconsComp from "@/components/ui/Icons";
 import React from "react";
 
 const Icons = () => {
-  return <div>Icons</div>;
+  return (
+    <>
+      <IconsComp />
+    </>
+  );
 };
 
 export default Icons;

@@ -1,32 +1,34 @@
+import IMAGES from "./images";
+
 export const tabs = [
     {
         title:"All",
         href:"/all",
-        src:"/assets/images/all.png"
+        src:IMAGES.All
     },
     {
         title:"Icons",
         href:"/icons",
-        src:"/assets/images/all.png"
+        src:IMAGES.Icon
     },
     {
         title:"Images",
         href:"/images",
-        src:"/assets/images/all.png"
+        src:IMAGES.Images
     },
     {
         title:"Infographics",
         href:"/infographics",
-        src:"/assets/images/all.png"
+        src:IMAGES.Infographics
     },
     {
         title:"PPT",
         href:"/ppt",
-        src:"/assets/images/all.png"
+        src:IMAGES.PPT
     },
     {
         title:"PDF",
         href:"/pdf",
-        src:"/assets/images/all.png"
+        src:IMAGES.PDF
     },
 ]

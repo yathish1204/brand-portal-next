@@ -10,7 +10,7 @@ const NotFound = () => {
           Oops! Page Not found
         </h3>
         <p className="text-start md:text-center">
-          Unfortunately page you are accessing is not available at the moment.
+          Unfortunately page you are looking for is not available at the moment.
         </p>
         <Link href={"/"} className="flex-shrink-0">
           <button className="px-4 py-2 bg-amber-400 rounded-md cursor-pointer">
