@@ -13,14 +13,14 @@ const Header = () => {
           <Link href={"/"}>
             <Image
               src="/images/BrandLogo.png"
-              width={120}
+              width={150}
               height={50}
               alt="Trigent Brand Logo"
             />
           </Link>
         </div>
         {/* Search Field */}
-        <div className="flex max-w-2xl w-full">
+        <div className="flex max-w-xs xl:max-w-2xl  w-full">
           <input
             className="w-[100%] border border-gray-300 px-4 py-2 rounded-full hover:border-gray-400 focus:outline-none  focus:border-amber-500"
             type="search"

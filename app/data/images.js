@@ -5,10 +5,11 @@ import Icon from '../assets/images/icon.png'
 import Images from '../assets/images/images.png'
 import Infographics from '../assets/images/infographics.png'
 import Logo from '../assets/images/BrandLogo.png'
+import LoadingSpinner from '../assets/images/loading.gif'
 
 const IMAGES = {
     All,
-    Logo,Icon,Images,Infographics,PPT,PDF
+    Logo,Icon,Images,Infographics,PPT,PDF,LoadingSpinner
 }
 
 export default IMAGES;

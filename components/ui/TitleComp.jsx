@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import FilterTab from "./FilterTab";
 
 const TitleComp = ({
   title,
@@ -13,26 +14,26 @@ const TitleComp = ({
       <div className="flex gap-2 items-baseline ">
         <h1 className="text-xl md:text-2xl font-semibold text-dark">{title}</h1>
         <span className="text-sm md:text-base font-light text-light">
-          ({resultsCount} Results)
+          ({resultsCount} results)
         </span>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         {filterTabs.length > 0 &&
-          filterTabs.map((tab, index) => (
+          filterTabs.map(({ label, icon }, index) => (
             <button
-              onClick={() => onFilterChange?.(tab)}
+              onClick={() => onFilterChange?.(label)}
               key={index}
               className={clsx(
-                "px-4 py-1 rounded-md text-sm md:text-base cursor-pointer",
+                "flex gap-1 items-center px-4 py-1 rounded-md text-xs md:text-sm cursor-pointer",
                 {
-                  "bg-orange-400 text-primary hover:bg-orange-300":
-                    activeFilter === tab,
+                  "bg-orange-400 text-primary": activeFilter === label,
                   "border border-gray-300 text-light hover:border-orange-400":
-                    activeFilter !== tab,
+                    activeFilter !== label,
                 }
               )}
             >
-              {tab}
+              <span>{icon}</span>
+              {label}
             </button>
           ))}
       </div>
