@@ -22,10 +22,15 @@ const ImageCard = ({ url, title, small, raw, full, regular }) => {
       hidden group-hover:flex 
       transition-all duration-200 "
       >
-        <button className="flex items-center gap-1 px-2 py-2 cursor-pointer">
+        <a
+          href={raw}
+          download
+          target="_blank"
+          className="flex items-center gap-1 px-2 py-2 cursor-pointer"
+        >
           <IoMdArrowDown />
           <span>Download</span>
-        </button>
+        </a>
         <button
           onClick={() => setOpen(!open)}
           className="border-l border-l-gray-300 px-2 py-2 cursor-pointer"

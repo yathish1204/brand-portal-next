@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 
 const Header = () => {
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white shadow-md sticky align-top top-0 z-50">
       <div className="max-w-7xl flex justify-between gap-x-4  items-center h-16 mx-auto px-2">
         {/* Brand Logo */}
         <div className="flex flex-shrink-0 items-center">

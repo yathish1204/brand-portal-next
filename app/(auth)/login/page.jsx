@@ -1,3 +1,4 @@
+import LoginComp from "@/components/layouts/LoginComp";
 import React from "react";
 
 export const metadata = {
@@ -5,7 +6,11 @@ export const metadata = {
 };
 
 const Login = () => {
-  return <div>Login</div>;
+  return (
+    <>
+      <LoginComp />
+    </>
+  );
 };
 
 export default Login;
