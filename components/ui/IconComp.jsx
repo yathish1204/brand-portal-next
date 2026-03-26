@@ -14,14 +14,14 @@ export default function IconsComp() {
   const Items_per_load = 40; // Number of items to load initially
   const [activeFilter, setActiveFilter] = useState(null);
   const [visibleIcons, setVisibleIcons] = useState(
-    iconsData.slice(0, Items_per_load)
+    iconsData.slice(0, Items_per_load),
   );
 
   // Load next batch of icons
   const loadMoreIcons = () => {
     const nextIcons = iconsData.slice(
       visibleIcons.length,
-      visibleIcons.length + Items_per_load
+      visibleIcons.length + Items_per_load,
     );
     setVisibleIcons((prev) => [...prev, ...nextIcons]);
   };

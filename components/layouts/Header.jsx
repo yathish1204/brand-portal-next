@@ -3,16 +3,18 @@ import Link from "next/link";
 import React from "react";
 import { IoIosMenu } from "react-icons/io";
 import Button from "../ui/Button";
+import IMAGES from "@/app/data/images";
+import HeaderTabs from "./HeaderTabs";
 
 const Header = () => {
   return (
-    <nav className="bg-white shadow-md sticky align-top top-0 z-50">
+    <header className="fixed-top bg-white shadow-md sticky align-top top-0 z-50">
       <div className="max-w-7xl flex justify-between gap-x-4  items-center h-16 mx-auto px-2">
         {/* Brand Logo */}
         <div className="flex flex-shrink-0 items-center">
           <Link href={"/"}>
             <Image
-              src="/images/BrandLogo.png"
+              src={IMAGES.Logo}
               width={150}
               height={50}
               alt="Trigent Brand Logo"
@@ -31,6 +33,7 @@ const Header = () => {
         </div>
         {/* Menu List */}
         <div className="hidden md:flex gap-x-4 items-center">
+          {/* <nav> */}
           <Link className="flex-shrink-0" href={"/brand-guidelines"}>
             Brand Guidelines↗️
           </Link>
@@ -45,6 +48,7 @@ const Header = () => {
             href={"/login"}
             disabled={false}
           />
+          {/* </nav> */}
         </div>
         {/* Mobile Menu */}
         <div className="flex md:hidden items-center">
@@ -53,7 +57,10 @@ const Header = () => {
           </button>
         </div>
       </div>
-    </nav>
+      <div className="flex justify-center">
+        <HeaderTabs />
+      </div>
+    </header>
   );
 };
 

@@ -1,98 +1,21 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TitleComp from "./TitleComp";
 import ImageCard from "./ImageCard";
-import throttle from "lodash.throttle";
 import Image from "next/image";
 import IMAGES from "@/app/data/images";
+import { useAuth } from "@/app/context/AuthContext";
 
 const ImageComp = () => {
   const [activeFilter, setActiveFilter] = useState(null);
-  const [photos, setPhotos] = useState([]);
-  const [page, setPage] = useState(1);
   const loaderRef = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
 
-  const fetchImages = async () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    const res = await fetch(`/api/photos?page=${page}`);
-    const data = await res.json();
-    // console.log(data);
-
-    if (data.length === 0) {
-      setHasMore(false);
-    } else {
-      setPhotos((prev) => [...prev, ...data]);
-      setPage((prev) => prev + 1);
-    }
-
-    setLoading(false);
-  };
-
-  const handleScroll = useCallback(
-    throttle(() => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 100 >=
-        document.documentElement.offsetHeight
-      ) {
-        fetchImages();
-      }
-    }, 300),
-    [page, loading, hasMore]
-  );
-
-  useEffect(() => {
-    fetchImages(); // First fetch only
-  }, []);
+  const { photos, fetchImages, loading, handleScroll } = useAuth();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [handleScroll]);
-
-  // const fetchImages = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const res = await fetch(`api/photos?page=${page}`);
-  //     const data = await res.json();
-  //     setPhotos((prev) => [...prev, ...data]);
-  //   } catch (error) {
-  //     console.error("Error fetching images:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchImages();
-  // });
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       if (entries[0].isIntersecting && !loading) {
-  //         setPage((prev) => prev + 1);
-  //       }
-  //     },
-  //     { threshold: 1 }
-  //   );
-
-  //   if (loaderRef.current) observer.observe(loaderRef.current);
-
-  //   return () => {
-  //     if (loaderRef.current) observer.unobserve(loaderRef.current);
-  //   };
-  // }, [loading]);
-
-  // console.log(photos);
 
   const handleFilterChange = (tab) => {
     setActiveFilter((prev) => (prev === tab ? null : tab));

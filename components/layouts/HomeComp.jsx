@@ -1,11 +1,13 @@
 import React from "react";
 import Tab from "../ui/Tab";
 import Button from "../ui/Button";
+import HomeTabs from "./HomeTabs";
 
 const HomeComp = () => {
   return (
-    <>
-      <Tab />
+    <div className="max-w-7xl mx-auto">
+      {/* <Tab /> */}
+      <HomeTabs />
       <div className="flex justify-center items-center mt-8">
         <div className="flex flex-col  items-center">
           <h3 className="text-xl md:text-2xl font-semibold ">
@@ -22,7 +24,7 @@ const HomeComp = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

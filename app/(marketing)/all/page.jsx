@@ -1,7 +1,12 @@
+import AllComp from "@/components/layouts/AllComp";
 import React from "react";
 
 const All = () => {
-  return <div>All</div>;
+  return (
+    <>
+      <AllComp />
+    </>
+  );
 };
 
 export default All;

@@ -18,7 +18,7 @@ const ImageCard = ({ url, title, small, raw, full, regular }) => {
       />
       {/* Button Group */}
       <div
-        className="items-center gap-2 absolute top-[8px] right-[8px]  bg-white rounded-md text-xs md:text-sm text-gray-800 z-50 
+        className="items-center gap-2 absolute top-[8px] right-[8px]  bg-white rounded-md text-xs md:text-sm text-gray-800 z-100 
       hidden group-hover:flex 
       transition-all duration-200 "
       >
