@@ -63,3 +63,11 @@ nav{
   z-index: 1000;
   width: 100%;
 }
+
+.no-scrollbar{
+  scrollbar-width: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

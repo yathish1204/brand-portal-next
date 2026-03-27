@@ -5,6 +5,7 @@ import { IoIosMenu } from "react-icons/io";
 import Button from "../ui/Button";
 import IMAGES from "@/app/data/images";
 import HeaderTabs from "./HeaderTabs";
+import LoginStatus from "../ui/LoginStatus";
 
 const Header = () => {
   return (
@@ -42,12 +43,7 @@ const Header = () => {
               Login
             </button>
           </Link> */}
-          <Button
-            label={"Login"}
-            isPrimary={true}
-            href={"/login"}
-            disabled={false}
-          />
+          <LoginStatus />
           {/* </nav> */}
         </div>
         {/* Mobile Menu */}

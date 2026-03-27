@@ -1,10 +1,31 @@
+"use client";
+import { useAuth } from "@/app/context/AuthContext";
 import IMAGES from "@/app/data/images";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { IoLogoGoogle } from "react-icons/io";
 
 const LoginComp = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    setLoading(true);
+
+    try {
+      // setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "true");
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false); // runs AFTER async work
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
       <div className="overflow-hidden h-50 md:h-screen">
@@ -25,13 +46,13 @@ const LoginComp = () => {
           </Link>
           <h2 className="text-[#111] font-semibold">Welcome</h2>
           <p className="text-[#666]">Login to Continue</p>
-          <a
-            href="/"
-            className="flex gap-2 bg-[#f2f2f2] rounded-md w-full items-center justify-center py-3 cursor-pointer"
+          <button
+            onClick={handleLogin}
+            className="flex gap-2 bg-[#f2f2f2] rounded-md w-full items-center justify-center hover:bg-gray-200 py-3 cursor-pointer"
           >
             <IoLogoGoogle />
-            Sign up with google
-          </a>
+            {loading ? "Signing In" : "Sign up with google"}
+          </button>
         </div>
       </div>
     </div>

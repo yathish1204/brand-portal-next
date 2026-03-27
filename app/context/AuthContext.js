@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [images, setImages] = useState([]);
 
   //   Fetch limited image from the API
@@ -71,6 +72,14 @@ export const AuthProvider = ({ children }) => {
     fetchImages(); // First fetch only
   }, []);
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem("isLoggedIn");
+
+    if (storedToken === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const data = {
     photos,
     setPhotos,
@@ -84,6 +93,8 @@ export const AuthProvider = ({ children }) => {
     handleScroll,
     images,
     setImages,
+    isLoggedIn,
+    setIsLoggedIn,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

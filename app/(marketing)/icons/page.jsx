@@ -3,7 +3,7 @@ import React from "react";
 
 const Icons = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto mt-10">
       <IconsComp />
     </div>
   );

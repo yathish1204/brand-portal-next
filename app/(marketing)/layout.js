@@ -12,8 +12,13 @@ export default function MarketingLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <div className="fixed top-0 left-0 right-0 w-full z-1000">
+            <Header />
+          </div>
+
+          <div className="mt-25">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

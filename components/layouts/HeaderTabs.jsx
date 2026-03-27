@@ -10,7 +10,7 @@ const HeaderTabs = () => {
   if (pathname === "/") return null;
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 overflow-x-auto no-scrollbar">
       {tabs.map((tab, i) => {
         const isActive = pathname === tab.href;
         return (
