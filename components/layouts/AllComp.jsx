@@ -279,6 +279,7 @@ const AllComp = () => {
             })}
         </div>
       </section>
+
       {/* PPT's */}
       <section className="mt-8 mb-10">
         <TitleBar

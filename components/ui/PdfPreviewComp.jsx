@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { pdfjs } from "react-pdf";
 
 const Document = dynamic(
   () => import("react-pdf").then((mod) => mod.Document),
@@ -12,10 +11,27 @@ const Page = dynamic(() => import("react-pdf").then((mod) => mod.Page), {
   ssr: false,
 });
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-
 const PdfPreviewComp = ({ pdfUrl, onClose }) => {
   const [numPages, setNumPages] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const configurePdfWorker = async () => {
+      // Load react-pdf only in browser runtime to avoid SSR/prerender crashes.
+      const reactPdf = await import("react-pdf");
+      if (!isMounted) return;
+
+      const { pdfjs } = reactPdf;
+      pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+    };
+
+    configurePdfWorker().catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
