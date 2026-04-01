@@ -3,18 +3,43 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import "./styles.css";
-import { IoIosArrowDown, IoMdArrowDown, IoMdDownload } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoMdArrowDown,
+  IoMdBookmark,
+  IoMdDownload,
+} from "react-icons/io";
+import { FaRegBookmark } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
+import { useAuth } from "@/app/context/AuthContext";
 
-const ImageCard = ({ url, title, small, raw, full, regular }) => {
+const ImageCard = ({
+  url,
+  alt,
+  toggleBookmark,
+  bookmarked,
+  title,
+  small,
+  raw,
+  full,
+  regular,
+  onClick,
+  id,
+}) => {
   const [open, setOpen] = useState(false);
+
+  const { isBookmarked } = useAuth();
+  // console.log(isBookmarked);
+
   return (
-    <div className="group img-card w-full h-full inline-block rounded-md relative ">
+    <div className="group img-card w-full h-full inline-block rounded-md relative cursor-pointer">
       <Image
         src={url}
         alt={title}
         width={300}
         height={200}
-        className="w-full object-cover rounded-md"
+        onClick={onClick}
+        className=" object-cover rounded-md user-select-none"
       />
       {/* Button Group */}
       <div
@@ -22,7 +47,7 @@ const ImageCard = ({ url, title, small, raw, full, regular }) => {
       hidden group-hover:flex 
       transition-all duration-200 "
       >
-        <a
+        <button
           href={raw}
           download
           target="_blank"
@@ -30,7 +55,7 @@ const ImageCard = ({ url, title, small, raw, full, regular }) => {
         >
           <IoMdArrowDown />
           <span>Download</span>
-        </a>
+        </button>
         <button
           onClick={() => setOpen(!open)}
           className="border-l border-l-gray-300 px-2 py-2 cursor-pointer"
@@ -86,6 +111,13 @@ const ImageCard = ({ url, title, small, raw, full, regular }) => {
             )}
           </div>
         )}
+      </div>
+      {/* Bookmark */}
+      <div
+        className="absolute hidden z-10 bottom-2 right-2 bg-white/90 p-2 rounded-full group-hover:flex items-center justify-center"
+        onClick={() => toggleBookmark()}
+      >
+        {isBookmarked(id) ? <FaBookmark /> : <FaRegBookmark />}
       </div>
     </div>
   );

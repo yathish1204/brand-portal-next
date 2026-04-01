@@ -61,7 +61,7 @@ const AllComp = () => {
               >
                 <Image
                   src={image.urls.full}
-                  alt={image.alt_descriptio}
+                  alt={image.alt_description}
                   width={300}
                   height={200}
                   className="w-full h-full object-cover rounded-md"
@@ -82,14 +82,14 @@ const AllComp = () => {
                     <span>Download</span>
                   </a>
                   <button
-                    onClick={() => setOpen(!open)}
+                    onClick={() => setOpen(open === i ? null : i)}
                     className="border-l border-l-gray-300 px-2 py-2 cursor-pointer"
                   >
                     <IoIosArrowDown />
                   </button>
                   {/* Dropdown Menu */}
-                  {open && (
-                    <div className="flex flex-col max-w-[200px] bg-white/95 rounded-md shadow-md absolute top-[40px] right-0 w-[250px] z-50 transition-all duration-200 px-1 py-1">
+                  {open === i && (
+                    <div className="flex flex-col max-w-[200px] bg-white/95 rounded-md shadow-md absolute top-[40px] right-0 w-[100px] md:w-[250px] z-50 transition-all duration-200 px-1 py-1">
                       {image.urls?.small && (
                         <a
                           href={image.urls.small}
@@ -170,7 +170,7 @@ const AllComp = () => {
               >
                 <Image
                   src={image.urls.full}
-                  alt={image.title}
+                  alt={image.alt_description}
                   width={300}
                   height={200}
                   className="w-full h-full object-cover rounded-md"

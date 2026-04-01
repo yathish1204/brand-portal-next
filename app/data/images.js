@@ -7,7 +7,7 @@ import Infographics from "../assets/images/infographics.png";
 import Logo from "../assets/images/BrandLogo.png";
 import LoadingSpinner from "../assets/images/loading.gif";
 import loginBg from "../assets/images/login-bg.png";
-// import trigentPdf from "../assets/trigent.pdf"
+import notFoundGif from "../assets/images/200.gif";
 
 const IMAGES = {
   All,
@@ -19,7 +19,7 @@ const IMAGES = {
   PDF,
   LoadingSpinner,
   loginBg,
-  // trigentPdf
+  notFoundGif,
 };
 
 export default IMAGES;

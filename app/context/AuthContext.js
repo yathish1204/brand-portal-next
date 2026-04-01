@@ -7,6 +7,7 @@ import {
   useEffect,
 } from "react";
 import throttle from "lodash.throttle";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
@@ -17,6 +18,54 @@ export const AuthProvider = ({ children }) => {
   const [hasMore, setHasMore] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [images, setImages] = useState([]);
+  const [isUploadAccess, setIsUploadAccess] = useState(false);
+  const [showRequestModal, setShowRequestModal] = useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState(null);
+  const [bookmarks, setBookmarks] = useState([]);
+  const [activeImageFilter, setActiveImageFilter] = useState("");
+
+  const router = useRouter();
+
+  // Bookmarks Functionality
+  useEffect(() => {
+    const stored = localStorage.getItem("bookmarks");
+    if (stored) {
+      JSON.parse(stored);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  });
+
+  const directToLogin = () => {
+    router.push("/login");
+  };
+
+  // ToggleBookmark
+  const toggleBookmark = (photo) => {
+    setBookmarks((prev) => {
+      const exists = prev.some((item) => item.id === photo.id);
+
+      if (exists) {
+        return prev.filter((item) => item.id !== photo.id);
+      } else {
+        return [
+          ...prev,
+          {
+            id: photo.id,
+            urls: photo.urls,
+            alt_description: photo.alt_description,
+            created_at: photo.created_at,
+          },
+        ];
+      }
+    });
+  };
+
+  const isBookmarked = (id) => {
+    return bookmarks.some((item) => item.id === id);
+  };
 
   //   Fetch limited image from the API
   const fetchLimitedImages = async (limit = 9) => {
@@ -95,6 +144,19 @@ export const AuthProvider = ({ children }) => {
     setImages,
     isLoggedIn,
     setIsLoggedIn,
+    setIsUploadAccess,
+    isUploadAccess,
+    showRequestModal,
+    setShowRequestModal,
+    currentPhoto,
+    setCurrentPhoto,
+    activeImageFilter,
+    setActiveImageFilter,
+    bookmarks,
+    setBookmarks,
+    toggleBookmark,
+    isBookmarked,
+    directToLogin,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

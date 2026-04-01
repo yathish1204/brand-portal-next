@@ -26,10 +26,11 @@ const TitleComp = ({
               className={clsx(
                 "flex gap-1 items-center px-4 py-1 rounded-md text-xs md:text-sm cursor-pointer",
                 {
-                  "bg-orange-400 text-white": activeFilter === label,
+                  "bg-orange-400 text-white border border-orange-400":
+                    activeFilter === label,
                   "border border-gray-300 text-light hover:border-orange-400":
                     activeFilter !== label,
-                }
+                },
               )}
             >
               <span>{icon}</span>

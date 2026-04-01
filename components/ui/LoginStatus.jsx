@@ -5,7 +5,7 @@ import ProfileAvatar from "./ProfileAvatar";
 import Button from "./Button";
 
 const LoginStatus = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, directToLogin } = useAuth();
   return (
     <>
       {isLoggedIn ? (
@@ -14,7 +14,7 @@ const LoginStatus = () => {
         <Button
           label={"Login"}
           isPrimary={true}
-          href={"/login"}
+          onClick={directToLogin}
           disabled={false}
         />
       )}
