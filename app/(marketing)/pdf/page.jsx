@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ReactPDF from "@react-pdf/renderer";
 import PDFComp from "@/components/ui/PDFComp";
