@@ -11,7 +11,7 @@ import { pdfAPI } from "@/app/data/pdfAPI";
 import PDFCard from "../ui/PDFCard";
 
 const AllComp = () => {
-  const { photos, fetchImages, images } = useAuth();
+  const { photos, fetchImages, images, photosError } = useAuth();
   const [open, setOpen] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState(null);
 
@@ -49,7 +49,12 @@ const AllComp = () => {
   md:grid-cols-6
   auto-rows-[120px] md:auto-rows-[150px]"
         >
-          {images.slice(-9).map((image, i) => {
+          {photosError ? (
+            <p className="col-span-full text-sm text-gray-600 py-6 px-2">
+              {photosError}
+            </p>
+          ) : (
+            images.slice(-9).map((image, i) => {
             return (
               <div
                 key={i}
@@ -139,7 +144,8 @@ const AllComp = () => {
                 </div>
               </div>
             );
-          })}
+          })
+          )}
         </div>
       </section>
 
@@ -158,7 +164,12 @@ const AllComp = () => {
   md:grid-cols-6
   auto-rows-[120px] md:auto-rows-[150px]"
         >
-          {images.slice(-9).map((image, i) => {
+          {photosError ? (
+            <p className="col-span-full text-sm text-gray-600 py-6 px-2">
+              {photosError}
+            </p>
+          ) : (
+            images.slice(-9).map((image, i) => {
             return (
               <div
                 key={i}
@@ -248,7 +259,8 @@ const AllComp = () => {
                 </div>
               </div>
             );
-          })}
+          })
+          )}
         </div>
       </section>
 

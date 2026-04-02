@@ -23,8 +23,31 @@ export const AuthProvider = ({ children }) => {
   const [currentPhoto, setCurrentPhoto] = useState(null);
   const [bookmarks, setBookmarks] = useState([]);
   const [activeImageFilter, setActiveImageFilter] = useState("");
+  const [photosError, setPhotosError] = useState(null);
 
   const router = useRouter();
+
+  const parsePhotosResponse = async (res) => {
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const message =
+        typeof json?.error === "string"
+          ? json.error
+          : `Could not load photos (${res.status})`;
+      return { data: [], error: message };
+    }
+    if (json?.error) {
+      return {
+        data: [],
+        error:
+          typeof json.error === "string"
+            ? json.error
+            : "Could not load photos",
+      };
+    }
+    const data = Array.isArray(json) ? json : json.results || [];
+    return { data, error: null };
+  };
 
   // Bookmarks Functionality
   useEffect(() => {
@@ -69,10 +92,14 @@ export const AuthProvider = ({ children }) => {
 
   //   Fetch limited image from the API
   const fetchLimitedImages = async (limit = 9) => {
-    const res = await fetch(`/api/photos?page=1`);
-    const Response = await res.json();
-
-    return Array.isArray(Response) ? Response : Response.results || [];
+    const res = await fetch(`/api/photos?page=1`, { cache: "no-store" });
+    const { data, error } = await parsePhotosResponse(res);
+    if (error) {
+      setPhotosError(error);
+      return [];
+    }
+    setPhotosError(null);
+    return data;
   };
 
   useEffect(() => {
@@ -89,11 +116,16 @@ export const AuthProvider = ({ children }) => {
     if (loading || !hasMore) return;
 
     setLoading(true);
-    const res = await fetch(`/api/photos?page=${page}`);
-    const Response = await res.json();
-    const data = Array.isArray(Response) ? Response : Response.results || [];
+    const res = await fetch(`/api/photos?page=${page}`, { cache: "no-store" });
+    const { data, error } = await parsePhotosResponse(res);
 
-    // console.log(data);
+    if (error) {
+      setPhotosError(error);
+      setHasMore(false);
+      setLoading(false);
+      return;
+    }
+    setPhotosError(null);
 
     if (data.length === 0) {
       setHasMore(false);
@@ -157,6 +189,8 @@ export const AuthProvider = ({ children }) => {
     toggleBookmark,
     isBookmarked,
     directToLogin,
+    photosError,
+    setPhotosError,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

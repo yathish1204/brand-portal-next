@@ -25,6 +25,7 @@ const ImageComp = () => {
     toggleBookmark,
     isBookmarked,
     bookmarks,
+    photosError,
   } = useAuth();
   console.log(currentPhoto);
 
@@ -108,7 +109,12 @@ const ImageComp = () => {
       />
       {/* </div> */}
 
-      {filtered.length === 0 && !loading ? (
+      {photosError && !loading ? (
+        <div className="flex flex-col items-center justify-center text-center py-10 text-gray-600 max-w-lg mx-auto px-4">
+          <p className="font-medium text-gray-800">Could not load images</p>
+          <p className="text-sm mt-2">{photosError}</p>
+        </div>
+      ) : filtered.length === 0 && !loading ? (
         <div className="flex flex-col items-center justify-center text-center py-10 text-gray-500">
           <Image
             src={IMAGES.notFoundGif}
