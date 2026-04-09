@@ -38,7 +38,14 @@ const UploadModal = () => {
               <p className="text-[#111] font-semibold text-xl">
                 Want Upload access?
               </p>
-              <FaTimes />
+              <span className="p-2 cursor-pointer">
+                <FaTimes
+                  onClick={() => {
+                    setShowRequestModal(false);
+                    localStorage.setItem("hasSeen", true);
+                  }}
+                />
+              </span>
             </div>
             <p className="text-[#333]">
               If you want to upload any asset or files here please send request

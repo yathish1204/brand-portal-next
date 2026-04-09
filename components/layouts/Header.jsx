@@ -6,6 +6,7 @@ import Button from "../ui/Button";
 import IMAGES from "@/app/data/images";
 import HeaderTabs from "./HeaderTabs";
 import LoginStatus from "../ui/LoginStatus";
+import SearchComp from "../ui/SearchComp";
 
 const Header = () => {
   return (
@@ -19,19 +20,19 @@ const Header = () => {
               width={150}
               height={50}
               alt="Trigent Brand Logo"
+              className="hidden md:block"
+            />
+            <Image
+              src={IMAGES.LogoMobile}
+              width={32}
+              height={32}
+              alt="Trigent Brand Logo"
+              className="block md:hidden"
             />
           </Link>
         </div>
-        {/* Search Field */}
-        <div className="flex max-w-xs xl:max-w-2xl  w-full">
-          <input
-            className="w-[100%] border border-gray-300 px-4 py-2 rounded-full hover:border-gray-400 focus:outline-none  focus:border-amber-500"
-            type="search"
-            name="searck"
-            id="search"
-            placeholder="Search for “Icons”, “images”, “pdf’s”..."
-          />
-        </div>
+        {/* Search Component */}
+        <SearchComp />
         {/* Menu List */}
         <div className="hidden md:flex gap-x-4 items-center">
           {/* <nav> */}

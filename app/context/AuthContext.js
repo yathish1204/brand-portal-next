@@ -24,6 +24,11 @@ export const AuthProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useState([]);
   const [activeImageFilter, setActiveImageFilter] = useState("");
   const [photosError, setPhotosError] = useState(null);
+  const [searchResults, setSearchResults] = useState({
+    images: [],
+    icons: [],
+  });
+  const [searchQuery, setSearchQuery] = useState("");
 
   const router = useRouter();
 
@@ -40,9 +45,7 @@ export const AuthProvider = ({ children }) => {
       return {
         data: [],
         error:
-          typeof json.error === "string"
-            ? json.error
-            : "Could not load photos",
+          typeof json.error === "string" ? json.error : "Could not load photos",
       };
     }
     const data = Array.isArray(json) ? json : json.results || [];
@@ -191,6 +194,10 @@ export const AuthProvider = ({ children }) => {
     directToLogin,
     photosError,
     setPhotosError,
+    searchResults,
+    setSearchResults,
+    searchQuery,
+    setSearchQuery,
   };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

@@ -27,7 +27,7 @@ const ImageComp = () => {
     bookmarks,
     photosError,
   } = useAuth();
-  console.log(currentPhoto);
+  // console.log(currentPhoto);
 
   const currentIndex = photos.findIndex(
     (photo) => photo.id === currentPhoto?.id,

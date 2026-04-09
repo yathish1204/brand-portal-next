@@ -15,7 +15,7 @@ const HeaderTabs = () => {
         const isActive = pathname === tab.href;
         return (
           <Link
-            className={`px-3 cursor-pointer border-b  py-1 ${isActive ? "border-b-[#FDBA33]" : "border-b-transparent"}`}
+            className={`px-3 cursor-pointer border-b  py-1 ${isActive ? "border-b-[#FDBA33] bg-gray-50" : "border-b-transparent"}`}
             href={tab.href}
             key={i}
           >

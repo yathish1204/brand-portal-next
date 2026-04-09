@@ -37,7 +37,10 @@ export async function GET(req) {
     } catch {
       if (detail) message = `${message} (${res.status})`;
     }
-    return Response.json({ error: message }, { status: res.status >= 500 ? 502 : res.status });
+    return Response.json(
+      { error: message },
+      { status: res.status >= 500 ? 502 : res.status },
+    );
   }
 
   const data = await res.json();

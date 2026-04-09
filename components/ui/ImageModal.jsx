@@ -61,7 +61,7 @@ const ImageModal = ({
         <div className="flex flex-col px-4 py-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-col gap-2">
-              <p className="text-xl font-medium">{title}</p>
+              <p className="md:text-xl font-medium">{title}</p>
               <p className="text-[#555]">{alt}</p>
               {/* Categories */}
               <div className="flex items-center gap-2 overflow-y-auto">

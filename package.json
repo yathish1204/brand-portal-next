@@ -13,6 +13,7 @@
     "@react-pdf/renderer": "^4.3.0",
     "clsx": "^2.1.1",
     "lodash.throttle": "^4.1.1",
+    "lottie-react": "^2.4.1",
     "next": "^15.5.14",
     "pdfjs-dist": "^5.4.54",
     "react": "19.1.0",
