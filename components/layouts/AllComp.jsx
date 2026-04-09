@@ -33,7 +33,7 @@ const AllComp = () => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [window.innerWidth]);
+  }, []);
 
   const visibleIcons = iconsData.slice(isMobile ? -15 : -30);
 
